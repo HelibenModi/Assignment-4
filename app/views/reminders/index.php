@@ -9,7 +9,12 @@
         </div>
     </div>
     <?php
-    print_r($data['reminders']);
+   foreach ($data['reminders'] as $reminder) {
+       echo "<p>". $reminder['subject'] . 
+           '  <a href="/reminders/update/">Update</a> . 
+           <a href="/reminders/delete/">Delete</a> </p>';
+   }
+
     ?>
     
 
