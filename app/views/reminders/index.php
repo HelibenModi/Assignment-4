@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>Reminders</h1>
-                
+                <p> <a href= "/reminders/create">Create a new Reminder</a></p>
             </div>
         </div>
     </div>
