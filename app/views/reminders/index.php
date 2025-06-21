@@ -4,9 +4,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>Reminders</h1>
+                
             </div>
         </div>
     </div>
+    <?php
+    print_r($data['reminders']);
+    ?>
+    
 
 
     <?php require_once 'app/views/templates/footer.php' ?>
