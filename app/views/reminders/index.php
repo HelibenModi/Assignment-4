@@ -1,22 +1,36 @@
-<?php require_once 'app/views/templates/header.php'?>
-<main role="main" class="container">
-    <div class="page-header" id="banner">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Reminders</h1>
-                <p> <a href= "/reminders/create">Create a new Reminder</a></p>
-            </div>
-        </div>
+<?php require_once 'app/views/templates/header.php' ?>
+<main role="main" class="container mt-4">
+    <div class="page-header">
+        <h1 class="mb-4">Reminders</h1>
+        <p><a class="btn btn-primary" href="/reminders/create">➕ Create New Reminder</a></p>
     </div>
-    <?php
-   foreach ($data['reminders'] as $reminder) {
-       echo "<p>". $reminder['subject'] . 
-           '  <a href="/reminders/update/">Update</a> . 
-           <a href="/reminders/delete/">Delete</a> </p>';
-   }
 
-    ?>
-    
-
-
-    <?php require_once 'app/views/templates/footer.php' ?>
+    <?php if (!empty($data['reminders'])): ?>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Subject</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($data['reminders'] as $index => $reminder): ?>
+                    <tr>
+                        <td><?= $index + 1 ?></td>
+                        <td><?= htmlspecialchars($reminder['subject']) ?></td>
+                        <td><?= htmlspecialchars($reminder['created_at']) ?></td>
+                        <td>
+                            <a href="/reminders/update/<?= $reminder['id'] ?>" class="btn btn-sm btn-warning"> Update</a>
+                            <a href="/reminders/delete/<?= $reminder['id'] ?>" onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p class="text-muted">You don’t have any reminders yet.</p>
+    <?php endif; ?>
+</main>
+<?php require_once 'app/views/templates/footer.php' ?>
