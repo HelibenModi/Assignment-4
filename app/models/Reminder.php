@@ -17,5 +17,12 @@ class Reminder {
       $rows = $statement->fetch(PDO::FETCH_ASSOC);
       return $rows;
     }
+     public function update_reminders () {
+      $db = db_connect();
+      $statement = $db->prepare("select * from users;");
+      $statement->execute();
+      $rows = $statement->fetch(PDO::FETCH_ASSOC);
+      return $rows;
+    }
 }
-?>
+
