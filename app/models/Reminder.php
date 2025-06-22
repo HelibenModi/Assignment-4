@@ -13,7 +13,6 @@ class Reminder {
         return $rows;
     }
 
-    // Add new reminder (no user filtering)
     public function add_reminder($subject) {
         $db = db_connect();
         $stmt = $db->prepare("INSERT INTO reminders (user_id, subject, created_at, completed) VALUES (1, :subject, NOW(), 0)");
@@ -36,4 +35,11 @@ class Reminder {
         return $stmt->execute();
     }
 
-    
+        public function toggle_completed($id) {
+            $db = db_connect();
+            $stmt = $db->prepare("UPDATE reminders SET completed = NOT completed WHERE id = :id");
+            $stmt->bindValue(':id', $id);
+            return $stmt->execute();
+        }
+    }
+
