@@ -13,7 +13,7 @@ class Reminder {
         return $rows;
     }
 
-    public function add_reminder($subject) {
+    public function create_reminder($subject) {
         $db = db_connect();
         $stmt = $db->prepare("INSERT INTO reminders (user_id, subject, created_at, completed) VALUES (1, :subject, NOW(), 0)");
         $stmt->bindValue(':subject', $subject);

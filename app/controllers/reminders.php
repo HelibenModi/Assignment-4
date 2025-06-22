@@ -11,4 +11,12 @@ class Reminders extends Controller {
   $reminder = $this->model('Reminder');
   $this->view('reminders/create');
   }
+  public function update() {		
+  $reminder = $this->model('Reminder');
+  $this->view('reminders/update');
+  }
+  public function delete() {		
+  $reminder = $this->model('Reminder');
+  $this->view('reminders/delete');
+  }
 }
