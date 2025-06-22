@@ -23,7 +23,7 @@
                         <td><?= htmlspecialchars($reminder['created_at']) ?></td>
                         <td>
                             <a href="/reminders/update/<?= $reminder['id'] ?>" class="btn btn-sm btn-warning"> Update</a>
-                            <a href="/reminders/delete/<?= $reminder['id'] ?>" onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-sm btn-danger">Delete</a>
+                            <a href="/reminders/delete/<?= $reminder['id'] ?>"  class="btn btn-sm btn-danger">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

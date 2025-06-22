@@ -2,24 +2,38 @@
 
 class Reminder {
 
-    public $username;
-    public $password;
-    public $auth = false;
+    public function __construct() {}
 
-    public function __construct() {
 
+    public function get_all_reminders() {
+        $db = db_connect();
+        $statement = $db->prepare("SELECT * FROM reminders;");
+        $statement->execute();
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
     }
 
-    public function get_all_reminders () {
-      $db = db_connect();
-      $statement = $db->prepare("select * from reminders;");
-      $statement->execute();
-      $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-      return $rows;
+    // Add new reminder (no user filtering)
+    public function add_reminder($subject) {
+        $db = db_connect();
+        $stmt = $db->prepare("INSERT INTO reminders (user_id, subject, created_at, completed) VALUES (1, :subject, NOW(), 0)");
+        $stmt->bindValue(':subject', $subject);
+        return $stmt->execute();
     }
-     public function update_reminders ($reminder_id) {
-      $db = db_connect();
-      
-    }
-}
 
+    public function update_reminders($id, $subject) {
+        $db = db_connect();
+        $stmt = $db->prepare("UPDATE reminders SET subject = :subject WHERE id = :id");
+        $stmt->bindValue(':subject', $subject);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function delete_reminders($id) {
+        $db = db_connect();
+        $stmt = $db->prepare("DELETE FROM reminders WHERE id = :id");
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+
+    
