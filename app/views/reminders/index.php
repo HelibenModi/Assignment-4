@@ -1,4 +1,7 @@
 <?php require_once 'app/views/templates/header.php' ?>
+<?php
+$data=$data['reminder'];
+?>
 <main role="main" class="container mt-4">
     <div class="page-header">
         <h1 class="mb-4">Reminders</h1>
@@ -30,15 +33,15 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <a href="/reminders/edit/<?= $reminder['id'] ?>" class="btn btn-sm btn-warning">✏️ Edit</a>
+                            <a href="/reminders/edit/<?= $reminder['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
                             <a href="/reminders/complete/<?= $reminder['id'] ?>" class="btn btn-sm btn-success">
-                                <?= $reminder['completed'] ? '↩️ Undo' : '✅ Complete' ?>
+                                <?= $reminder['completed'] ? ' Undo' : ' Complete' ?>
                             </a>
                             <button type="button" class="btn btn-sm btn-danger"
                                     data-bs-toggle="modal"
                                     data-bs-target="#deleteModal"
                                     data-id="<?= $reminder['id'] ?>">
-                                🗑️ Delete
+                                 Delete
                             </button>
                         </td>
                     </tr>
@@ -69,17 +72,7 @@
     </div>
 </main>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const deleteModal = document.getElementById('deleteModal');
-    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
 
-    deleteModal.addEventListener('show.bs.modal', function (event) {
-        const button = event.relatedTarget;
-        const reminderId = button.getAttribute('data-id');
-        confirmDeleteBtn.href = '/reminders/delete/' + reminderId;
-    });
-});
-</script>
 
 <?php require_once 'app/views/templates/footer.php' ?>
+
