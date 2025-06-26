@@ -1,0 +1,103 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9fafc;
+    color: #333;
+    padding: 30px;
+}
+
+/* Centered Form Container */
+.container {
+    max-width: 420px;
+    margin: 50px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 25px rgba(0,0,0,0.1);
+}
+
+/* Headline */
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: #0d6efd;
+    margin-bottom: 30px;
+}
+
+/* Labels */
+label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="password"] {
+    font-size: 1rem;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #0d6efd;
+    background-color: #e7f1ff;
+    color: #333;
+    outline: none;
+    margin-bottom: 25px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #084298;
+    background-color: #d9e9ff;
+}
+
+/* Buttons */
+button {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    background-color: #0d6efd;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #084298;
+}
+
+/* Links */
+a.button-link {
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 15px;
+    color: #0d6efd;
+    background-color: #e9ecef;
+    transition: background-color 0.3s ease;
+}
+
+a.button-link:hover {
+    background-color: #dce3e9;
+}
+
+/* Responsive Styles */
+@media (max-width: 500px) {
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+}
