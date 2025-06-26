@@ -1,8 +1,6 @@
 <?php require_once 'app/views/templates/header.php' ?>
 <main class="container mt-4">
-    <?php
-    $data=$data['reminder'];
-    ?>
+   
     <h2>Edit Reminder</h2>
     <form method="post" action="/reminders/edit/<?= $data['reminder']['id'] ?>">
         <div class="mb-3">

@@ -1,7 +1,5 @@
 <?php require_once 'app/views/templates/header.php' ?>
-<?php
-$data=$data['reminder'];
-?>
+
 <main role="main" class="container mt-4">
     <div class="page-header">
         <h1 class="mb-4">Reminders</h1>
