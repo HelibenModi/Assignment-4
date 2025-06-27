@@ -15,14 +15,22 @@ class Reminder {
 
     public function create_reminder($subject) {
         $db = db_connect();
-        $stmt = $db->prepare("INSERT INTO reminders (user_id, subject, created_at, completed) VALUES (1, :subject, NOW(), 0)");
+        $stmt = $db->prepare("INSERT INTO reminders (user_id, subject, created_at, completed) VALUES (6, :subject, NOW(), 0)");
         $stmt->bindValue(':subject', $subject);
         return $stmt->execute();
     }
+    public function get_reminder_by_id($id) {
+        $db = db_connect();
+        $stmt = $db->prepare("SELECT * FROM reminders WHERE id = :id AND user_id = 6");
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 
     public function update_reminders($id, $subject) {
         $db = db_connect();
-        $stmt = $db->prepare("UPDATE reminders SET subject = :subject WHERE id = :id");
+        $stmt = $db->prepare("UPDATE reminders SET subject = :subject WHERE id = :id AND user_id = 6");
         $stmt->bindValue(':subject', $subject);
         $stmt->bindValue(':id', $id);
         return $stmt->execute();
@@ -30,16 +38,21 @@ class Reminder {
 
     public function delete_reminders($id) {
         $db = db_connect();
-        $stmt = $db->prepare("DELETE FROM reminders WHERE id = :id");
+        $stmt = $db->prepare("DELETE FROM reminders WHERE id = :id AND user_id = 6");
         $stmt->bindValue(':id', $id);
         return $stmt->execute();
     }
 
-        public function toggle_completed($id) {
-            $db = db_connect();
-            $stmt = $db->prepare("UPDATE reminders SET completed = NOT completed WHERE id = :id");
-            $stmt->bindValue(':id', $id);
-            return $stmt->execute();
-        }
-    }
+      public function toggle_completed($id) {
+          $db = db_connect();
+          $stmt = $db->prepare("UPDATE reminders SET completed = NOT completed WHERE id = :id AND user_id = 6");
+          $stmt->bindValue(':id', $id);
+          return $stmt->execute();
+    
 
+      }
+
+
+
+
+}

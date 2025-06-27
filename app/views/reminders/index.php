@@ -5,15 +5,21 @@
         <h1 class="mb-4">Reminders</h1>
         <p><a class="btn btn-primary" href="/reminders/create">➕ Create New Reminder</a></p>
     </div>
+    <?php if (!empty($_SESSION['flash'])): ?>
+        <div class="alert alert-success">
+            <?= htmlspecialchars($_SESSION['flash']) ?>
+            <?php unset($_SESSION['flash']); ?>
+        </div>
+    <?php endif; ?>
+
 
     <?php if (!empty($data['reminders'])): ?>
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Subject</th>
                     <th>Created At</th>
-                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -23,18 +29,19 @@
                         <td><?= $index + 1 ?></td>
                         <td><?= $reminder['completed'] ? '<del>' . htmlspecialchars($reminder['subject']) . '</del>' : htmlspecialchars($reminder['subject']) ?></td>
                         <td><?= htmlspecialchars($reminder['created_at']) ?></td>
-                        <td>
-                            <?php if ($reminder['completed']): ?>
-                                <span class="badge bg-success">Completed</span>
-                            <?php else: ?>
-                                <span class="badge bg-warning text-dark">Pending</span>
-                            <?php endif; ?>
-                        </td>
+                     
                         <td>
                             <a href="/reminders/edit/<?= $reminder['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="/reminders/complete/<?= $reminder['id'] ?>" class="btn btn-sm btn-success">
-                                <?= $reminder['completed'] ? ' Undo' : ' Complete' ?>
-                            </a>
+    <div></div>
+                            <form method="post" action="/reminders/complete/<?= $reminder['id'] ?>" style="display:inline;">
+                                <label class="switch">
+                                    <input type="checkbox" name="toggle" onchange="this.form.submit()" <?= $reminder['completed'] ? 'checked' : '' ?>>
+                                    <span class="slider"></span>
+                                </label>
+                            </form>
+
+
+                            
                             <button type="button" class="btn btn-sm btn-danger"
                                     data-bs-toggle="modal"
                                     data-bs-target="#deleteModal"

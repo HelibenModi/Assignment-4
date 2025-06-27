@@ -1,8 +1,8 @@
 <?php
-
+// File: app/controllers/reminders.php
 class Reminders extends Controller {
 
-    public function index() {		
+    public function index() {
         $reminder = $this->model('Reminder');
         $list_of_reminders = $reminder->get_all_reminders();
         $this->view('reminders/index', ['reminders' => $list_of_reminders]);
@@ -13,7 +13,7 @@ class Reminders extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $subject = $_POST['subject'];
-            $reminder->add_reminder($subject);
+            $reminder->create_reminder($subject);
             header('Location: /reminders');
             exit;
         }
@@ -43,9 +43,15 @@ class Reminders extends Controller {
     }
 
     public function complete($id) {
-        $reminder = $this->model('Reminder');
-        $reminder->toggle_completed($id);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $reminder = $this->model('Reminder');
+            $reminder->toggle_completed($id);
+            $_SESSION['flash'] = "Reminder status updated.";
+        }
+
         header('Location: /reminders');
         exit;
     }
+
+
 }
