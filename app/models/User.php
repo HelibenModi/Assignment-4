@@ -35,7 +35,7 @@ class User {
 			$_SESSION['username'] = ucwords($username);
       $_SESSION['userid'] = $rows['userid'];
 			unset($_SESSION['failedAuth']);
-			header('Location: /home');
+			header('Location: /reminders');
 			die;
 		} else {
 			if(isset($_SESSION['failedAuth'])) {

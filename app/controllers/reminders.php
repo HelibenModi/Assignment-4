@@ -47,13 +47,4 @@ class Reminders extends Controller {
     }
 
 
-    public function complete($id) {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $reminder = $this->model('Reminder');
-            $reminder->toggle_completed($id);
-        }
-        header('Location: /reminders'); // redirect back to main list
-        exit;
-    }
-
 }

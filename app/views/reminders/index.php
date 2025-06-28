@@ -23,11 +23,7 @@
                         <td>
                             <a href="/reminders/edit/<?= $reminder['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
 
-                            <form method="post" action="/reminders/complete/<?= $reminder['id'] ?>" style="display:inline;">
-                                <button type="submit" class="btn btn-sm btn-success">
-                                    <?= $reminder['completed'] ? 'Undo' : 'Complete' ?>
-                                </button>
-                            </form>
+                            
 
                             <form method="post" action="/reminders/delete/<?= $reminder['id'] ?>" style="display:inline;">
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -41,5 +37,9 @@
         <p class="text-muted">You don’t have any reminders yet.</p>
     <?php endif; ?>
 </main>
-
+<div class="row">
+    <div class="col-lg-12">
+        <p> <a href="/logout">Click here to logout</a></p>
+    </div>
+</div>
 <?php require_once 'app/views/templates/footer.php'; ?>
