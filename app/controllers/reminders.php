@@ -1,5 +1,5 @@
 <?php
-// File: app/controllers/reminders.php
+
 class Reminders extends Controller {
 
     public function index() {
@@ -36,22 +36,24 @@ class Reminders extends Controller {
     }
 
     public function delete($id) {
-        $reminder = $this->model('Reminder');
-        $reminder->delete_reminders($id);
-        header('Location: /reminders');
-        exit;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $reminder = $this->model('Reminder');
+            $reminder->delete_reminders($id);
+            header('Location: /reminders');
+            exit;
+        } else {
+            echo 'Invalid request method.';
+        }
     }
+
 
     public function complete($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $reminder = $this->model('Reminder');
             $reminder->toggle_completed($id);
-            $_SESSION['flash'] = "Reminder status updated.";
         }
-
-        header('Location: /reminders');
+        header('Location: /reminders'); // redirect back to main list
         exit;
     }
-
 
 }

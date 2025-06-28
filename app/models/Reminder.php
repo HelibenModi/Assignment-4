@@ -43,16 +43,13 @@ class Reminder {
         return $stmt->execute();
     }
 
-      public function toggle_completed($id) {
-          $db = db_connect();
-          $stmt = $db->prepare("UPDATE reminders SET completed = NOT completed WHERE id = :id AND user_id = 6");
-          $stmt->bindValue(':id', $id);
-          return $stmt->execute();
-    
 
-      }
-
-
+       public function toggle_completed($id) {
+           $db = db_connect();
+           $stmt = $db->prepare("UPDATE reminders SET completed = NOT completed WHERE id = :id AND user_id = 6");
+           $stmt->bindValue(':id', $id);
+           return $stmt->execute();
+       }
 
 
 }
