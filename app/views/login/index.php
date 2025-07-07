@@ -20,8 +20,10 @@
 				<label for="password">Password</label>
 				<input required type="password" class="form-control" name="password">
 			</div>
-            <br>
+            <br/>
 		    <button type="submit" class="btn btn-primary">Login</button>
+			<br/><br/>
+			 Don't have an acoount?  <a href="/create">Create account</a>
 		</fieldset>
 		</form> 
 	</div>
